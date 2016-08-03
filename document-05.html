@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>读取和写入cookie</title>
+    <link href="imgs/ycdoit.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+<p id="cookiedata"></p>
+<button id="write">Add Cookie</button>
+<button id="update">Update Cookie</button>
+<script>
+    var cookieCount = 0;
+    document.getElementById("write").onclick = createCookie;
+    document.getElementById("update").onclick = updateCookie;
+
+    function readCookies(){
+        document.getElementById("cookiedata").innerHTML = document.cookie;
+    }
+
+    function createCookie(){
+        cookieCount++;
+        document.cookie = "Cookie_"+cookieCount+"=Value_"+cookieCount;
+        readCookies();
+    }
+
+    function updateCookie(){
+        document.cookie = "Cookie_"+cookieCount+"=Update_"+cookieCount;
+        readCookies();
+    }
+</script>
+</body>
+</html>

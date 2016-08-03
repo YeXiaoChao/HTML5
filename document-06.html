@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>理解就绪状态</title>
+    <link href="imgs/ycdoit.ico" rel="shortcut icon" type="image/x-icon" />
+    <script>
+        document.onreadystatechange = function(){
+            if (document.readyState == "interactive"){
+                document.getElementById("pressme").onclick = function(){
+                    document.getElementById("results").innerHTML = "Button Pressed";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<button id="pressme">Press Me</button>
+<pre id="results"></pre>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>使用属性获取元素对象</title>
+    <link href="imgs/ycdoit.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        pre { border: medium double black;}
+    </style>
+</head>
+<body>
+<pre id="results"></pre>
+<img id="lemon" src="imgs/lemon.png" alt="Lemon" />
+<img src="imgs/apple.png" id="apple" alt="apple" />
+<img src="imgs/banana-small.png" alt="small banana" id="banana">
+
+<script>
+    var resultsElement = document.getElementById("results");
+    var elems = document.images;
+    for(var i=0;i<elems.length;i++){
+        resultsElement.innerHTML += "Imgage Element: "+elems[i].id +"\n";
+    }
+    var srcValue = elems.namedItem("apple").src;
+    resultsElement.innerHTML += "Src for apple element is: "+ srcValue + "\n";
+</script>
+</body>
+</html>
