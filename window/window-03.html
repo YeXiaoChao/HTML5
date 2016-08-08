@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>与窗口进行交互</title>
+</head>
+<body>
+<p>
+    <button id="scroll">Scroll</button>
+    <button id="print">Print</button>
+    <button id="close">Close</button>
+</p>
+<p>
+    1 <br /> 2 <br /> 3 <br /> 4 <br /> 5 <br /> 6 <br /> 7 <br /> 8  <br /> 9 <br /> 10 <br /> 11 <br /> 12 <br />
+    1 <br /> 2 <br /> 3 <br /> 4 <br /> 5 <br /> 6 <br /> 7 <br /> 8  <br /> 9 <br /> 10 <br /> 11 <br /> 12 <br />
+    1 <br /> 2 <br /> 3 <br /> 4 <br /> 5 <br /> 6 <br /> 7 <br /> 8  <br /> 9 <br /> 10 <br /> 11 <br /> 12 <br />
+</p>
+
+<script>
+    var buttons = document.getElementsByTagName("button");
+    for(var i=0;i<buttons.length;i++){
+        buttons[i].onclick = handleButtonPress;
+    }
+
+    function handleButtonPress(e){
+        if(e.target.id == "print"){
+            window.print();
+        }else if(e.target.id == "close"){
+            window.close();
+        }else {
+            window.scrollTo(0,300);
+        }
+    }
+</script>
+</body>
+</html>

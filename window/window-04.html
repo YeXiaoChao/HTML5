@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对用户进行提示</title>
+</head>
+<body>
+<form id="theform">
+<button id="alert">Alert</button>
+<button id="confirm">Confirm</button>
+<button id="prompt">Prompt</button>
+<button id="modal">Modal</button>
+</form>
+<script>
+    var buttons = document.getElementsByTagName("button");
+    for(var i=0;i<buttons.length;i++){
+        buttons[i].onclick = handleButtonPress;
+    }
+
+    function  handleButtonPress(e){
+        if(e.target.id == "alert"){
+            window.alert("This is an alert");
+        }else if(e.target.id == "confirm"){
+            var confirmed = window.confirm("This is a confirm - do you want to proceed?")
+            alert("Confirmed? "+confirmed);
+        }else if(e.target.id == "prompt"){
+            var response = window.prompt("Enter a word","Hello");
+            alert(response);
+        }else if(e.target.id == "modal"){
+            //模块对话框。
+            // 第一个参数为url地址，
+            // 第二个参数是向子窗口传递的参数，如把父窗口中的window对象，form对象传递过去，在子窗口中可以获取此参数。以便与子窗口进行交互，
+            // 第三个参数为设置子窗口的属性，如子窗口的高，宽等
+            //第二，三个参数可选。
+            window.showModalDialog(
+                    "https://yexiaochao.github.io",
+                    theform,
+                    "dialogHeight: 500px; dialogWidth: 260px;;");
+        }
+    }
+</script>
+</body>
+</html>

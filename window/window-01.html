@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取Window对象</title>
+</head>
+<body id="bod">
+<table>
+    <tr><th>outerWidth:</th><td id="owidth"></td></tr>
+    <tr><th>outerHeight:</th><td id="oheight"></td> </tr>
+</table>
+
+<script>
+    document.getElementById("owidth").innerHTML = window.outerWidth;
+    document.getElementById("oheight").innerHTML = document.defaultView.outerHeight;
+</script>
+</body>
+</html>

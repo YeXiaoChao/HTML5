@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在浏览历史中导航</title>
+</head>
+<body>
+<button id="back">Back</button>
+<button id="forward">Forward</button>
+<button id="go">Go</button>
+
+<script>
+    var buttons = document.getElementsByTagName("button");
+    for (var i=0;i<buttons.length;i++){
+        buttons[i].onclick = handleButtonPress;
+    }
+
+    function  handleButtonPress(e){
+        if(e.target.id == "back"){
+            window.history.back();
+        }else if(e.target.id == "forward"){
+            window.history.forward();
+        }else if(e.target.id == "go"){
+            window.history.go(-2);
+        }
+    }
+</script>
+</body>
+</html>
