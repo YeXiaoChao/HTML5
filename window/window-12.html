@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用计时器方法</title>
+</head>
+<body>
+<p id="msg"></p>
+<p>
+    <button id="settime">Set Time</button>
+    <button id="cleartime">Clear Time</button>
+    <button id="setinterval">Set Interrval</button>
+    <button id="clearinterval">Clear Interval</button>
+</p>
+<script>
+    var buttons = document.getElementsByTagName("button");
+    for(var i=0;i<buttons.length;i++){
+        buttons[i].onclick = handleButtonPress;
+    }
+
+    var timeID;
+    var intervalID;
+    var count = 0;
+
+    function handleButtonPress(e){
+        if(e.target.id == "settime"){
+            timeID = window.setTimeout(function(){
+                dispalyMsg("Timeout Expired");
+            },200)
+            dispalyMsg("Timeout Set");
+        }else if(e.target.id == "cleartime"){
+            window.clearTimeout(timeID);
+            dispalyMsg("Timeout Cleared");
+        }else if(e.target.id == "setinterval"){
+            intervalID = window.setInterval(function(){
+               dispalyMsg("Interval expired. Counter: "+ count++);
+            },200);
+            dispalyMsg("Interval Set");
+        }else  if(e.target.id == "clearinterval"){
+            window.clearInterval(intervalID);
+            dispalyMsg("Interval Cleared");
+        }
+    }
+
+    function dispalyMsg(msg){
+        document.getElementById("msg").innerHTML = msg;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跨文档问题</title>
+</head>
+<body>
+<p id="msg">Ready</p>
+<button id="send">Send Message</button>
+<p>
+    <iframe name="nested" src="http://localhost:53396/show/otherdomain.html" width="38%" height="160px"></iframe>
+</p>
+<script>
+    document.getElementById("send").onclick = function(){
+        window["nested"].postMessage("我的心愿是 - 世界和平！","http://localhost:53396");
+        document.getElementById("msg").innerHTML = "Message Sent";
+    }
+</script>
+</body>
+</html>
