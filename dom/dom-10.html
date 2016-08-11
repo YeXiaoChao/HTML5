@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>比较元素对象</title>
+    <style>
+        table{ border: solid thin green; border-collapse: collapse; margin: 10px;}
+        td { padding: 4px 5px;}
+    </style>
+</head>
+<body>
+<table border="1">
+    <thead><tr><th>Fruit</th><th>Color</th></tr></thead>
+    <tbody id="fruitsBody">
+    <tr id="plumrow"><td>Plum</td><td>Purple</td></tr>
+    </tbody>
+</table>
+<pre id="results"></pre>
+<script>
+    var elemByID = document.getElementById("plumrow");
+    var elemByPos = document.getElementById("fruitsBody").getElementsByTagName("tr")[0];
+    if (elemByID.isSameNode(elemByPos)){
+        document.getElementById("results").innerHTML = "Objects are the same";
+    }
+
+</script>
+</body>
+</html>

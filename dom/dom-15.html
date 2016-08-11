@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>将一个元素插入文本</title>
+</head>
+<body>
+<p id="textblock">
+    It's now or never,never tomorrow,and never next second!
+</p>
+<p>
+    <button id="insert">Insert Element</button>
+</p>
+<script>
+    document.getElementById("insert").onclick = function(){
+        var textBlock = document.getElementById("textblock");
+        textBlock.firstChild.splitText(10);
+        var newText = textBlock.childNodes[1].splitText(4).previousSibling;
+        textBlock.insertBefore(document.createElement("b"),newText).appendChild(newText);
+    }
+</script>
+</body>
+</html>

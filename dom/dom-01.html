@@ -13,5 +13,16 @@
     Bt the time we add the countless types of <span id="apple">apples</span>, <span id="orange">oranges</span>,
     and other well-known fruit, we are faced with thousands of choices.
 </p>
+<pre id="results"></pre>
+<script>
+    var results =document.getElementById("results");
+    var elem = document.getElementById("textblock");
+    results.innerHTML += "tag: " + elem.tagName + "\n";
+    results.innerHTML += "id: " + elem.id + "\n";
+    results.innerHTML += "dir: " + elem.dir + "\n";
+    results.innerHTML += "lang: " + elem.lang + "\n";
+    results.innerHTML += "hidden: " + elem.hidden + "\n";
+    results.innerHTML += "disabled: " + elem.disabled + "\n";
+</script>
 </body>
 </html>

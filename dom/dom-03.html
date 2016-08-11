@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用属性方法</title>
+    <style>
+        p {border: medium double black;}
+    </style>
+</head>
+<body>
+<p id="textblock" class="class1 class2">
+    It's now or never,never tomorrow,and never next second!
+</p>
+<pre id="results"></pre>
+<script>
+    var results = document.getElementById("results");
+    var elem = document.getElementById("textblock");
+
+    results.innerHTML = "Element has lang attribute: " + elem.hasAttribute("lang") + "\n";
+    results.innerHTML += "Adding lang attribute\n";
+    elem.setAttribute("lang","en-US");
+    results.innerHTML += "Attr value is: " + elem.getAttribute("lang") + "\n";
+    results.innerHTML += "Set new value for lang attribute\n";
+    elem.setAttribute("lang","en-UK");
+    results.innerHTML += "Value is now: " + elem.getAttribute("lang") + "\n";
+</script>
+</body>
+</html>

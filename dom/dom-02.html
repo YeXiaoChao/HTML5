@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用className属性</title>
+    <style>
+        p {border: medium  double black;}
+        p.newclass {background-color: grey; color: white;}
+    </style>
+</head>
+<body>
+<p id="textblock" class="class1 class2">
+    It's now or never,never tomorrow,and never next second!
+</p>
+<pre id="results"></pre>
+<button id="toggle">Toggle Class</button>
+<script>
+    var results = document.getElementById("results");
+    document.getElementById("toggle").onclick = toggleClass;
+
+    listClasses();
+    function listClasses(){
+        var classlist = document.getElementById("textblock").classList;
+        results.innerHTML = "Current classes: ";
+        for(var i=0;i<classlist.length;i++){
+            results.innerHTML += classlist[i] + " ";
+        }
+    }
+
+    function toggleClass(){
+        document.getElementById("textblock").classList.toggle("newclass");
+        listClasses();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用innerHTMLh和outerHTML属性</title>
+    <style>
+        table{ border: solid thin green; border-collapse: collapse; margin: 10px;}
+        td { padding: 4px 5px;}
+        p { clear: left;}
+    </style>
+</head>
+<body>
+<table border="1">
+    <thead><tr><th>Fruit</th><th>Color</th></tr></thead>
+    <tbody>
+    <tr id="applerow"><td>Plum</td><td>Purple</td></tr>
+    </tbody>
+</table>
+<textarea rows="3" id="results"></textarea>
+<p>
+    <button id="inner">Inner HTML</button>
+    <button id="outer">Outer HTML</button>
+</p>
+<script>
+    var results = $("results");
+    var row = $("applerow");
+    $("inner").onclick = function(){
+        results.innerHTML = row.innerHTML;
+    }
+    $("outer").onclick = function(){
+        results.innerHTML = row.outerHTML;
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</body>
+</html>

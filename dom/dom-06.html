@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>处理文本</title>
+    <style>
+        p {border: medium double green;}
+    </style>
+</head>
+<body>
+<p id="textblock" class="class1 class2" data-sentence="encouragement" data-sentiment="like">
+    It's <b>now</b> or never,never tomorrow,and never next second!
+</p>
+<button id="pressme">Press Me</button>
+<pre id="results"></pre>
+<script>
+    var results = document.getElementById("results");
+    var elem = document.getElementById("textblock");
+
+    document.getElementById("pressme").onclick = function(){
+        var textElem = elem.firstChild;
+        results.innerHTML = "The element has " + textElem.length + " chars\n";
+        textElem.replaceWholeText("It is ");
+    }
+</script>
+</body>
+</html>

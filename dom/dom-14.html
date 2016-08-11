@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用insertAdjacentHTML方法</title>
+</head>
+<body>
+<table border="1">
+    <thead><tr><th>Fruit</th><th>Color</th></tr></thead>
+    <tbody id="fruitsBody">
+        <tr id="targetrow"><td>Placeholder</td></tr>
+    </tbody>
+</table>
+<p>
+    <button id="ab">After Begin</button>
+    <button id="ae">After End</button>
+    <button id="bb">Before Begin</button>
+    <button id="be">Before End</button>
+</p>
+<script>
+    var target = document.getElementById("targetrow");
+    var buttons = document.getElementsByTagName("button");
+    for(var i=0;i<buttons.length;i++){
+        buttons[i].onclick =handlerButtonPress;
+    }
+    function handlerButtonPress(e){
+        if(e.target.id == "ab"){
+            target.insertAdjacentHTML("afterbegin","<td>After Begin</td>");
+        }else if(e.target.id == "ae"){
+            target.insertAdjacentHTML("afterend","<td>After End</td>");
+        }else if(e.target.id == "bb"){
+            target.insertAdjacentHTML("beforebegin","<tr><td colspan='2'>Before Begin</td></tr>");
+        }else if(e.target.id == "be"){
+            target.insertAdjacentHTML("beforeend","<tr><td colspan='2'>Before End</td></tr>");
+        }
+    }
+</script>
+</body>
+</html>

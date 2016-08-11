@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用attributes属性</title>
+    <style>
+        p {border: medium double green;}
+    </style>
+</head>
+<body>
+<p id="textblock" class="class1 class2" data-sentence="encouragement" data-sentiment="like">
+    It's now or never,never tomorrow,and never next second!
+</p>
+<pre id="results"></pre>
+<script>
+    var results = document.getElementById("results");
+    var elem = document.getElementById("textblock");
+
+    var attrs = elem.attributes;
+    for(var i=0; i<attrs.length;i++){
+        results.innerHTML += "Name: " + attrs[i].name + " Value: " + attrs[i].value + "\n";
+    }
+    attrs["data-sentence"].value = "now";
+    results.innerHTML += "Value of data-sentence attr: " + attrs["data-sentence"].value;
+</script>
+</body>
+</html>
