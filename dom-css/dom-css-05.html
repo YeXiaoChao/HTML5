@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>从一个HTMLElement上获取CSSStyleDeclaration对象</title>
+</head>
+<body>
+<p id="block1">
+    你承受的苦难并不比他人多太多，痛苦主要来自敏感和脆弱。
+</p>
+<div><button id="pressme">Press Me</button> </div>
+<div id="placeholder"></div>
+<script>
+    var placeholder = $("placeholder");
+    var targetElem = $("block1");
+    displayStyle();
+    $("pressme").onclick = function(){
+        targetElem.style.cssText = "color:green;"
+        displayStyle();
+    }
+    function displayStyle(){
+        if(placeholder.hasChildNodes()){
+            placeholder.removeChild(placeholder.firstChild);
+        }
+        var newElem = document.createElement("table");
+        addRow(newElem,"Element CSS",targetElem.style.cssText);
+        placeholder.appendChild(newElem);
+    }
+    function addRow(elem,header,value){
+        elem.innerHTML += "<tr><td>" + header + ":</td><td>" + value + "</td></tr>";
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</body>
+</html>
