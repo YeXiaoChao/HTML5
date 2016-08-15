@@ -21,6 +21,28 @@
     document.getElementById("pressme").onclick = function(){
         var styleDeclr = document.styleSheets[0].cssRules[0].style;
         styleDeclr.setProperty("background-color","gray");
+        styleDeclr.setProperty("padding-top","20px")
+        styleDeclr.setProperty("color","blue");
+        displayStyles();
+    }
+    function displayStyles(){
+        if(placeholder.hasChildNodes()){
+            var childCount = placeholder.childNodes.length;
+            for(var i=0;i<childCount;i++){
+                placeholder.removeChild(placeholder.firstChild);
+            }
+        }
+        var newElem = document.createElement("table");
+        newElem.setAttribute("border","1");
+        var style = document.styleSheets[0].cssRules[0].style;
+        addRow(newElem,"border",style.getPropertyValue("border"));
+        addRow(newElem,"color",style.getPropertyValue("color"));
+        addRow(newElem,"padding-top",style.getPropertyValue("padding-top"));
+        addRow(newElem,"background-color",style.getPropertyValue("background-color"));
+        placeholder.appendChild(newElem);
+    }
+    function addRow(elem,header,value){
+        elem.innerHTML += "<tr><td>" + header + ":</td><td>" + value + "</td></tr>";
     }
 </script>
 </body>
