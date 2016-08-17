@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用MouseEvent对象响应鼠标事情</title>
+    <style>
+        p {background: gray;color: white;padding: 10px;margin: 5px;border: thin solid orange;}
+        table {margin: 5px;border-collapse: collapse;}
+        th,td {padding: 4px;}
+    </style>
+</head>
+<body>
+<p id="block1">
+    你承受的苦难并不比他人多太多，痛苦主要来自敏感和脆弱。
+</p >
+<table border="1">
+    <tr><th>Type:</th><td id="eType"></td></tr>
+    <tr><th>X:</th><td id="eX"></td></tr>
+    <tr><th>Y:</th><td id="eY"></td></tr>
+</table>
+<script type="application/javascript">
+    function $(id){
+        return document.getElementById(id);
+    }
+    function handleMouseEvent(e){
+        if (e.eventPhase == Event.AT_TARGET){
+            $("eType").innerHTML = e.type;
+            $("eX").innerHTML = e.clientX;
+            $("eY").innerHTML = e.clientY;
+            if(e.type == "mousemove"){
+                e.target.style.background = 'white';
+                e.target.style.color = 'blue';
+            }else {
+                e.target.style.removeProperty('background');
+                e.target.style.removeProperty('color');
+            }
+        }
+    }
+    $("block1").addEventListener("mouseout",handleMouseEvent,false);
+    $("block1").addEventListener("mousemove",handleMouseEvent,false);
+</script>
+</body>
+</html>

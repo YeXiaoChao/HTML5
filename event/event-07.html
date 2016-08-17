@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡</title>
+    <style type="text/css">
+        p {background: gray;color: white;padding: 10px;margin: 5px;border: thin solid orange;}
+        span {background: white;color: #017CB9;padding: 2px;cursor: default;}
+    </style>
+</head>
+<body>
+<p id="block1">
+    The shortest mantra of this world is <span id="point">the name</span> of a person.
+</p >
+<script type="application/javascript">
+    var point = document.getElementById("point");
+    var textBlock = document.getElementById("block1");
+
+    point.addEventListener("mouseover",handleMouseEvent);
+    point.addEventListener("mouseout",handleMouseEvent);
+    function handleMouseEvent(e){
+        if(e.type == "mouseover"){
+            e.target.style.background='black';
+            e.target.style.color = 'white';
+        }else if(e.type == "mouseout"){
+            e.target.style.removeProperty('background');
+            e.target.style.removeProperty('color');
+        }
+    }
+
+    textBlock.addEventListener("mouseover",handleDescendantEvent,true);
+    textBlock.addEventListener("mouseout",handleDescendantEvent,true);
+    function handleDescendantEvent(e){
+        if(e.type == "mouseover" && e.eventPhase == Event.CAPTURING_PHASE){
+            e.target.style.border = "thick solid red";
+            e.currentTarget.style.border = "thick double blue";
+        }else if(e.type == "mouseout" && e.eventPhase == Event.CAPTURING_PHASE){
+            e.target.style.removeProperty("border");
+            e.currentTarget.style.removeProperty("border");
+        }
+    }
+
+    textBlock.addEventListener("mouseover",handleBubbleMouseEvent,false);
+    textBlock.addEventListener("mouseout",handleBubbleMouseEvent,false);
+    function handleBubbleMouseEvent(e){
+        if(e.type == "mouseover" && e.eventPhase == Event.BUBBLING_PHASE){
+            e.target.style.textTransform = "uppercase";
+        }else if(e.type == "mouseout" && e.eventPhase == Event.BUBBLING_PHASE){
+            e.target.style.textTransform = "none";
+        }
+    }
+</script>
+</body>
+</html>

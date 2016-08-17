@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>撤销默认的行为</title>
+    <style type="text/css">
+        a {background: gray;color:white;padding: 10px;border: thin solid orange;}
+    </style>
+</head>
+<body>
+<p>
+    <a href="https://yexiaochao.github.io">Visit Luka's Blog</a>
+    <a href="https://github.com/YeXiaoChao">Visit Luka's GitHub</a>
+</p>
+<script type="application/javascript">
+    function handleClick(e){
+        if(!confirm("Do you want to navigate to " + e.target.href + "?")){
+            e.preventDefault();
+        }
+    }
+    var elems = document.querySelectorAll("a");
+    for (var i=0;i<elems.length;i++){
+        elems[i].addEventListener("click",handleClick,false);
+    }
+</script>
+</body>
+</html>

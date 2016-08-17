@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用函数来处理事件</title>
+    <style>
+        p {background: gray;color:white;padding: 10px;margin: 5px;border: thin solid orange;}
+    </style>
+</head>
+<body>
+<p onmouseover="handleMouseOver(this)"   onmouseout="handleMouseOut(this)">
+    你承受的苦难并不比他人多太多，痛苦主要来自敏感和脆弱。
+</p >
+<p onmouseover="handleMouseOver(this)"  onmouseout="handleMouseOut(this)">
+    一些年轻人，通过高端消费来营造自己高端收入的形象
+</p>
+<script>
+    function handleMouseOver(elem){
+        elem.style.background='white';
+        elem.style.color = 'black';
+    }
+    function handleMouseOut(elem){
+        elem.style.removeProperty('color');
+        elem.style.removeProperty('background');
+    }
+</script>
+</body>
+</html>

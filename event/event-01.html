@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用内联JavaScript处理事件</title>
+    <style>
+        p {background: gray;color:white;padding: 10px;margin: 5px;border: thin solid orange;}
+    </style>
+</head>
+<body>
+<p onmouseover="this.style.background='white';this.style.color = 'black';"
+   onmouseout="this.style.removeProperty('color');this.style.removeProperty('background');">
+    你承受的苦难并不比他人多太多，痛苦主要来自敏感和脆弱。
+</p>
+</body>
+</html>
