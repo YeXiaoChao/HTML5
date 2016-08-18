@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>处理Ajax错误</title>
+</head>
+<body>
+<div>
+    <button>apples</button>
+    <button>bananas</button>
+    <button>lemons</button>
+    <button id="badhost">Bad Host</button>
+    <button id="badurl">Bad URL</button>
+</div>
+<div id="target">Press a button</div>
+<div id="errormsg"></div>
+<div id="statusmsg"></div>
+
+<script type="application/javascript">
+    var buttons = document.getElementsByTagName("button");
+    for(var i = 0; i < buttons.length; i++){
+        buttons[i].onclick = handleButtonPress;
+    }
+
+    var httpRequest;
+
+    function handleButtonPress(e){
+        clearMessages();
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = handleResponse;
+        httpRequest.onerror = handleError;
+        try{
+            switch(e.target.id){
+                case "badhost":
+                    httpRequest.open("GET","http://www.ycdoitt.com/nopage.html")
+                    break;
+                case "badurl":
+                    httpRequest.open("GET","http://")
+                    break;
+                default:
+                    httpRequest.open("GET", e.target.innerHTML + ".html")
+                    break;
+            }
+            httpRequest.send();
+        }catch(error){
+            displayErrorMsg("try/catch",error.message+"("+error.name+")")
+        }
+    }
+
+    function handleError(e){
+        displayErrorMsg("Error event",httpRequest.status + httpRequest.statusText);
+    }
+
+    function handleResponse(){
+        if(httpRequest.readyState == 4){
+            var target = document.getElementById("target");
+            if(httpRequest.status == 200){
+                target.innerHTML = httpRequest.responseText;
+            }else{
+                document.getElementById("statusmsg").innerHTML
+                        = "Status:" + httpRequest.status +" "+ httpRequest.statusText;
+            }
+        }
+    }
+
+    function displayErrorMsg(src,msg){
+        document.getElementById("errormsg").innerHTML = src + ": " + msg;
+    }
+
+    function clearMessages(){
+        document.getElementById("errormsg").innerHTML = "";
+        document.getElementById("statusmsg").innerHTML = "";
+    }
+</script>
+</body>
+</html>

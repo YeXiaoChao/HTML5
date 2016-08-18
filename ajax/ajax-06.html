@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>尝试生成跨源请求的脚本</title>
+</head>
+<body>
+<div>
+    <button>apples</button>
+    <button>bananas</button>
+    <button>lemons</button>
+</div>
+<div id="target">Press a button</div>
+
+<script>
+    var buttons = document.getElementsByTagName("button");
+    for(var i = 0; i < buttons.length; i++){
+        buttons[i].onclick = handleButtonPress;
+    }
+
+    var httpRequest;
+
+    function handleButtonPress(e){
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = handleResponse;
+        httpRequest.open("GET","http://127.0.0.1:8080/"+ e.target.innerHTML);
+        httpRequest.send();
+    }
+
+    function handleResponse(){
+        if(httpRequest.readyState == 4 && httpRequest.status == 200){
+            document.getElementById("target").innerHTML = httpRequest.responseText;
+        }
+    }
+</script>
+</body>
+</html>

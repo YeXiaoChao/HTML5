@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用canPlayType方法</title>
+    <style>
+        table {border: thin solid orange;border-collapse: collapse;}
+        th,td {padding: 2px 4px;}
+        body > * {float: left;margin: 2px;}
+    </style>
+</head>
+<body>
+<video id="media" width="360" height="240" controls preload="metadata">
+    Video cannot be displayed
+</video>
+<table id="info" border="1">
+    <tr><th>Property</th><th>Value</th></tr>
+</table>
+<script type="application/javascript">
+    var mediaElem = document.getElementById("media");
+    var tableElem = document.getElementById("info");
+
+    var mediaFiles = ["timessquare.webm","timessquare.ogv","timessquare.mp4"];
+    var mediaTypes = ["video/webm","video/ogv","video/mp4"];
+    for(var i=0;i<mediaTypes.length;i++){
+        var playable = mediaElem.canPlayType(mediaTypes[i]);
+        if(!playable){
+            playable = "no";
+        }
+        tableElem.innerHTML += "<tr><td>" + mediaTypes[i] + "</td><td>"+ playable +"</td></tr>";
+        if(playable == "probably"){
+            mediaElem.src = mediaFiles;
+        }
+    }
+</script>
+</body>
+</html>

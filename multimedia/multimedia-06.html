@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取媒体元素的基本信息</title>
+    <style>
+        table {border: thin solid orange;border-collapse: collapse;}
+        th,td {padding: 2px 4px;}
+        body > * {float: left;margin: 2px;}
+    </style>
+</head>
+<body>
+<video id="media" width="360" height="240" controls preload="metadata">
+    <source src="timessquare.webm" type="video/webm" />
+    <source src="timessquare.ogv" type="video/ogg" />
+    <source src="timessquare.mp4" type="video/mp4" />
+    Video cannot be displayed
+</video>
+<table id="info" border="1">
+    <tr><th>Property</th><th>Value</th></tr>
+</table>
+<script type="application/javascript">
+    var mediaElem = document.getElementById("media");
+    var tableElem = document.getElementById("info");
+    var propertyNames = ["autoplay","currentSrc","controls","loop","muted","preload","src","volume"];
+    for(var i=0;i<propertyNames.length;i++){
+        tableElem.innerHTML += "<tr><td>"+propertyNames[i]+"</td><td>"+mediaElem[propertyNames[i]]+"</td></tr>";
+    }
+</script>
+</body>
+</html>

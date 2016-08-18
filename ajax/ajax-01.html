@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用XMLHttpRequest对象</title>
+</head>
+<body>
+<div>
+    <button>apples</button>
+    <button>bananas</button>
+    <button>lemons</button>
+</div>
+<div id="target">
+    Press a button
+</div>
+
+<script type="application/javascript">
+    var buttons = document.getElementsByTagName("button");
+    for(var i=0; i<buttons.length; i++){
+        buttons[i].onclick = handleButtonPress;
+    }
+
+    //脚本会调用此函数以响应 button 控件的 click 事件
+    function  handleButtonPress(e){
+        //创建一个新的 XMLHttpRequest 对象
+        var httpRequest = new XMLHttpRequest();
+        //给 onreadystatechange 事件设置一个事件处理器
+        httpRequest.onreadystatechange = handleResponse;
+        //使用 open 方法来指定 HTTP 方法和需要请求的 URL (即告诉 httpRequest 对象你想要做的事)
+        httpRequest.open("GET", e.target.innerHTML+".html");
+        //这里没有向服务器发送任何数据，所以 send 方法无参数可用
+        httpRequest.send();
+    }
+
+    //处理响应
+    //一旦脚本调用了 send 方法，浏览器就会在后台发送请求到服务器。因为请求是在后台处理的，所以Ajax 依靠事件来通知这个请求的进展情况。
+    function handleResponse(e){
+        //当 onreadystatechange 事件被触发后，浏览器会把一个 Event 对象传递给指定的处理函数，target 属性则会被设为与此事件关联的XMLHttpRequest
+        if(e.target.readyState == XMLHttpRequest.DONE && e.target.status == 200){ //请求成功
+            document.getElementById("target").innerHTML = e.target.responseText; //显示被请求文档的内容
+        }
+    }
+</script>
+</body>
+</html>
