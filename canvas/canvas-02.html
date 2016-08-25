@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>为画布获取二维上下文对象</title>
+    <style>
+        canvas {border: medium double black;margin: 4px;}
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="200">
+    Your browser doesn't support the <code>canvas</code> element
+</canvas>
+<script>
+    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.fillRect(10,10,50,50);
+</script>
+</body>
+</html>

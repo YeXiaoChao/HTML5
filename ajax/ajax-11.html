@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-<form id="fruitform" method="post" action="http://127.0.0.1:8080/form">
+<form id="fruitform" method="post" action="http://localhost:53396/ajax/html5/fruitcalc.aspx">
     <div class="lable">
         <div class="row">
             <div class="cell lable">Apples:</div>
@@ -38,7 +38,14 @@
     function handleButtonPress(e){
         e.preventDefault();
         var form = document.getElementById("fruitform");
-        var formData = new FormData(form);
+
+        var formData = new FormData();
+        var inputElements = document.getElementsByTagName("input");
+        for(var i=0;i<inputElements.length;i++){
+            if(inputElements[i].name != "cherries"){
+                formData.append(inputElements[i].name,inputElements[i].value);
+            }
+        }
 
         httpRequest = new XMLHttpRequest();
         httpRequest.onreadystatechange = handleResponse;

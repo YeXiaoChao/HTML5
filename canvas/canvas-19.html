@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用canvas显示视频并在上面绘图</title>
+    <style type="text/css">
+        canvas {border: thin solid black;margin: 4px;}
+    </style>
+</head>
+<body>
+<div>
+    <video id="vid" src="../multimedia/timessquare.webm" controls autoplay preload="auto"
+           width="360" height="240" hidden>
+        Video cannot be displayed
+    </video>
+    <canvas id="canvas" width="360" height="240">
+        Your browser doesn't support the <code>canvas</code> element
+    </canvas>
+</div>
+<script>
+    var ctx = document.getElementById("canvas").getContext("2d");
+    var imageElement = document.getElementById("vid");
+    var width = 100;
+    var height = 10;
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "red";
+    setInterval(function(){
+        ctx.drawImage(imageElement,0,0,360,240);
+        ctx.strokeRect(180 - (width/2), 120 - (height/2),width,height);
+    },25);
+    setInterval(function(){
+        width = (width + 1) % 200;
+        height = (height + 3) % 200;
+    },100)
+</script>
+</body>
+</html>

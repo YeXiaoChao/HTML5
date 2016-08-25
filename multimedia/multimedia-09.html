@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>替换默认的媒体控件</title>
+</head>
+<body>
+<video id="media" width="360" height="240" preload="metadata">
+    <source src="timessquare.webm" type="video/webm" />
+    <source src="timessquare.ogv" type="video/ogg" />
+    <source src="timessquare.mp4" type="video/mp4" />
+    Video cannot be displayed
+</video>
+<div>
+    <button>Play</button>
+    <button>Pause</button>
+</div>
+<script type="application/javascript">
+    var mediaElem = document.getElementById("media");
+    var buttons = document.getElementsByTagName("button");
+    for (var i=0;i<buttons.length;i++){
+        buttons[i].onclick = handleButtonPress;
+    }
+    function handleButtonPress(e){
+        switch(e.target.innerHTML){
+            case 'Play':
+                mediaElem.play();
+                break;
+            case 'Pause':
+                mediaElem.pause();
+        }
+    }
+</script>
+</body>
+</html>

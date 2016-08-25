@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置lineJoin属性</title>
+    <style>
+        canvas {border: medium double black;margin: 4px;}
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="140">
+    Your browser doesn't support the <code>canvas</code> element
+</canvas>
+<script>
+    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.lineWidth = 20;
+
+    ctx.lineJoin = "round";
+    ctx.strokeRect(20,20,100,100);
+    ctx.lineJoin = "bevel";
+    ctx.strokeRect(160,20,100,100);
+    ctx.lineJoin = "miter";
+    ctx.strokeRect(300,20,100,100);
+</script>
+</body>
+</html>

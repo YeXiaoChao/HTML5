@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>发送JSON数据到服务器</title>
+    <title>使用FormData对象发送文件到服务器</title>
     <style>
         .row{display: table-row;}
         .cell{display: table-cell;padding: 5px;}
@@ -25,6 +25,10 @@
             <div class="cell"><input name="cherries" value="20" /></div>
         </div>
         <div class="row">
+            <div class="cell lable">File:</div>
+            <div class="cell"><input type="file" name="file" /></div>
+        </div>
+        <div class="row">
             <div class="cell lable">Total:</div>
             <div id="results" class="cell">0 items</div>
         </div>
@@ -38,17 +42,11 @@
     function handleButtonPress(e){
         e.preventDefault();
         var form = document.getElementById("fruitform");
-
-        var formData = new Object();
-        var inputElements = document.getElementsByTagName("input");
-        for(var i=0;i<inputElements.length;i++){
-            formData[inputElements[i].name] = inputElements[i].value;
-        }
-
+        var formData = new FormData(form);
         httpRequest = new XMLHttpRequest();
         httpRequest.onreadystatechange = handleResponse;
         httpRequest.open("POST",form.action);
-        httpRequest.send(JSON.stringify(formData));
+        httpRequest.send(formData);
     }
 
     function handleResponse(){
