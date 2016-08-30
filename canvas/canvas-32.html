@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>给图形和文本应用阴影</title>
+    <style>
+        canvas {border: thin solid orange;}
+        body > * {float: left;}
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="140">
+    Your browser doesn't support the <code>canvas</code> element
+</canvas>
+<script type="application/javascript">
+    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.fillStyle = "lightgrey";
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 3;
+
+    ctx.shadowOffsetX = 5;
+    ctx.shadowOffsetY = 5;
+    ctx.shadowBlur = 5;
+    ctx.shadowColor = "blue";
+
+    ctx.strokeRect(250,20,100,100);
+    ctx.beginPath();
+    ctx.arc(420,70,50,0,Math.PI,true);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(420,80,40,0,Math.PI,false);
+    ctx.fill();
+
+    ctx.font = "100px sans-serif";
+    ctx.fillText("Hello",10,100);
+    ctx.strokeText("Hello",10,100);
+</script>
+</body>
+</html>

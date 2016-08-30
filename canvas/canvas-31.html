@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在画布上绘制文本</title>
+    <style>
+        canvas {border: thin solid orange;}
+        body > * {float: left;}
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="140">
+    Your browser doesn't support the <code>canvas</code> element
+</canvas>
+<script type="application/javascript">
+    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.fillStyle = "lightgrey";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3;
+
+    ctx.font = "100px sans-serif";
+    ctx.fillText("Hello",10,100);
+    ctx.strokeText("Hello",10,100);
+
+    ctx.fillText("Luka",250,100);
+    ctx.strokeText("Chao",250,100);
+</script>
+</body>
+</html>
