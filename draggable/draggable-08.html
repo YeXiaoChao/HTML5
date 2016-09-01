@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结合拖放、文件API和FormData对象</title>
+    <style>
+        body > * {float: left;}
+        #target {border:medium double black;margin: 4px;height: 75px;width: 200px;text-align: center;display: table;}
+        #target > p {display: table-cell;vertical-align: middle;}
+        table {margin: 4px;border-collapse: collapse;}
+        th,td {padding: 4px;}
+    </style>
+</head>
+<body>
+<form id="form1" method="post" action="http://localhost:53396/ajax/html5/fileupload.aspx">
+<div id="target">
+    <p id="msg">Drop Files Here</p>
+</div>
+<table id="data" border="1"></table>
+<button id="submit" type="submit">Submit Form</button>
+</form>
+<script>
+    var target = document.getElementById("target");
+    var httpRequest;
+    var fileList;
+    document.getElementById("submit").onclick = handleButtonPress;
+    target.ondragenter = handleDrag;
+    target.ondragover = handleDrag;
+    function handleDrag(e){
+        e.preventDefault();
+    }
+    target.ondrop = function(e){
+        fileList = e.dataTransfer.files;
+        var tableElem = document.getElementById("data");
+        tableElem.innerHTML = "<tr><th>Name</th><th>Type</th><th>Size</th></tr>";
+        for(var i=0;i<fileList.length;i++){
+            var row = "<tr><td>"
+                    + fileList[i].name+"</td><td>"
+                    + fileList[i].type+"</td><td>"
+                    + fileList[i].size+"</td></tr>";
+            tableElem.innerHTML += row;
+        }
+        e.preventDefault();
+    }
+    function handleButtonPress(e){
+        e.preventDefault();
+        var form = document.getElementById("form1");
+        var formData = new FormData(form);
+        if(fileList || true){
+            for(var i=0;i<fileList.length;i++){
+                formData.append("file"+i,fileList[i]);
+            }
+        }
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange  = handleResponse;
+        httpRequest.open("POST",form.action);
+        httpRequest.send(formData);
+    }
+    function handleResponse(){
+        if(httpRequest.readyState == 4 && httpRequest.status == 200){
+            alert(httpRequest.responseText);
+        }
+    }
+</script>
+</body>
+</html>
