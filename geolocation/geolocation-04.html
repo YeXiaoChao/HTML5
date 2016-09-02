@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用watchPosition</title>
+    <style type="text/css">
+        table {border-collapse: collapse;}
+        th,td {padding: 4px;}
+        th {text-align: right;}
+    </style>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Longitude:</th><td id="longitude">-</td>
+        <th>Latitude:</th><td id="latitude">-</td>
+    </tr>
+    <tr>
+        <th>Altitude:</th><td id="altitude">-</td>
+        <th>Accuracy:</th><td id="accuracy">-</td>
+    </tr>
+    <tr>
+        <th>Altitude Accuracy:</th><td id="altitudeAccuracy">-</td>
+        <th>Heading:</th><td id="heading">-</td>
+    </tr>
+    <tr>
+        <th>Speed:</th><td id="speed">-</td>
+        <th>Time Stamp:</th><td id="timestamp">-</td>
+    </tr>
+    <tr>
+        <th>Code:</th><td id="errcode">-</td>
+        <th>Error Message:</th><td id="errmessage">-</td>
+    </tr>
+</table>
+<button id="pressme">Cancel Watch</button>
+<script type="application/javascript">
+    var options ={
+        enableHigAccuracy:false,
+        timeout:2000,
+        maximumAge:30000
+    };
+    var watchID = navigator.geolocation.watchPosition(displayPosition,handleError,options);
+    document.getElementById("pressme").onclick = function(e){
+        navigator.geolocation.clearWatch(watchID);
+    }
+    function displayPosition(pos){
+        var propertis = ["longitude","latitude","altitude","accuracy",
+            "altitudeAccuracy","heading","speed"];
+        for(var i=0;i<propertis.length;i++){
+            var value = pos.coords[propertis[i]];
+            document.getElementById(propertis[i]).innerHTML = value;
+        }
+        document.getElementById("timestamp").innerHTML = pos.timestamp;
+    }
+
+    function handleError(err){
+        document.getElementById("errcode").innerHTML = err.code;
+        document.getElementById("errmessage").innerHTML = err.message;
+    }
+</script>
+</body>
+</html>
